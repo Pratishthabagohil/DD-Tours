@@ -130,6 +130,9 @@
 from pathlib import Path
 import os
 from django.core.management.utils import get_random_secret_key
+# import pymysql
+# pymysql.install_as_MySQLdb()
+
 
 # Base directory
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -213,10 +216,12 @@ TEMPLATES = [
 WSGI_APPLICATION = 'DD_Tours.wsgi.application'
 
 # Database
+# import os
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / "my.sqlite3",
+        'NAME': os.path.join(BASE_DIR, "my.sqlite3"),
     }
 }
 
