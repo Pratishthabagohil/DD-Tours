@@ -221,7 +221,7 @@ WSGI_APPLICATION = 'DD_Tours.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, "my.sqlite3"),
+        'NAME': '/tmp/db.sqlite3',
     }
 }
 
