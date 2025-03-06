@@ -3,9 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Add Google Platform Library -->
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <!-- Add your Client ID in a meta tag -->
+    <meta name="google-signin-client_id" content="604121903175-k85cv4qk6q8vhfgsc7f6ja9pemsjff2b.apps.googleusercontent.com">
     <title>Login & Signup</title>
     <style>
       @import url("https://fonts.googleapis.com/css?family=Montserrat:400,800");
+
+      * {
+        box-sizing: border-box;
+      }
 
       body {
         background: linear-gradient(125deg, #008eff 30%, #ffffff 60%);
@@ -17,20 +25,17 @@
         margin: 0;
       }
 
-      /* Login/Signup Container */
       .container {
         background-color: #fff;
         border-radius: 10px;
-        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
-          0 10px 10px rgba(0, 0, 0, 0.22);
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
         position: relative;
         overflow: hidden;
-        width: 700px;
+        width: 678px;
         max-width: 100%;
-        min-height: 430px;
+        min-height: 400px;
       }
 
-      /* Forms */
       .form-container {
         position: absolute;
         top: 0;
@@ -99,7 +104,6 @@
         transform: scale(0.95);
       }
 
-      /* Overlay */
       .overlay-container {
         position: absolute;
         top: 0;
@@ -129,6 +133,7 @@
       .container.right-panel-active .overlay {
         transform: translateX(50%);
       }
+
       .overlay p {
         padding: 20px;
       }
@@ -162,10 +167,14 @@
       .container.right-panel-active .overlay-right {
         transform: translateX(20%);
       }
+
+      /* Style for Google Sign-In button container */
+      .g-signin2 {
+        margin-top: 10px;
+      }
     </style>
   </head>
   <body>
-    {% comment %} {% load static %} {% include "navbar.html" %} {% endcomment %}
     <div class="container" id="container">
       <div class="form-container sign-up-container">
         <form>
@@ -183,6 +192,8 @@
           <input type="email" placeholder="Email" />
           <input type="password" placeholder="Password" />
           <button>Sign In</button>
+          <!-- Add Google Sign-In Button -->
+          <div class="g-signin2" data-onsuccess="onSignIn"></div>
         </form>
       </div>
 
@@ -190,9 +201,7 @@
         <div class="overlay">
           <div class="overlay-panel overlay-left">
             <h1>Welcome Back!</h1>
-            <p>
-              To keep connected with us please login with your personal info
-            </p>
+            <p>To keep connected with us please login with your personal info</p>
             <button class="ghost" id="signIn">Sign In</button>
           </div>
           <div class="overlay-panel overlay-right">
@@ -216,6 +225,19 @@
       signInButton.addEventListener("click", () =>
         container.classList.remove("right-panel-active")
       );
+
+      // Google Sign-In callback function
+      function onSignIn(googleUser) {
+        var profile = googleUser.getBasicProfile();
+        console.log("ID: " + profile.getId()); // Do not send this to your backend (use ID token instead)
+        console.log("Name: " + profile.getName());
+        console.log("Email: " + profile.getEmail());
+        console.log("Image URL: " + profile.getImageUrl());
+
+        // Optionally, get the ID token for backend verification
+        var id_token = googleUser.getAuthResponse().id_token;
+        console.log("ID Token: " + id_token);
+      }
     </script>
   </body>
 </html>
