@@ -26,76 +26,92 @@
     }
     </style>
 
-    <script>
-    window.addEventListener("scroll", function () {
-        let navbar = document.querySelector("nav");
-        let contentSection = document.querySelector(".content").offsetTop;
-      
-        if (window.scrollY > contentSection) {
-          navbar.classList.add("scrolled");
-        } else {
-          navbar.classList.remove("scrolled");
-        }
-      });
-      
-</script>   
+  
 </head>
 <body>
-<section class="allcontent">
+<!-- Preloader -->
+<div id="preloader">
+    <div class="loader">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+</div>
 
     {% include 'chatbot.html' %}
+    <section class="allcontent">
+        <div class="banner">
+            <video src="{% static 'files/bgvid.mp4' %}" type="video/mp4" autoplay muted loop></video>
+            <div class="content" id="home"> 
+                <nav>
+                    <img src="{% static 'files/logo.png' %}" class="logo" alt="Logo" title="FirstFlight Travels">
+                    <h2>DD Tours And Travels</h2>
+                    <ul class="navbar">
+                      <li><a href="#home">Home</a></li>
+                      <li><a href="#locations">Locations</a></li>
+                      <li><a href="{% url 'about' %}">About Us</a></li>
+                      <li><a href="{% url 'contact' %}">Contact Us</a></li>
+                      <li><a href="{% url 'login' %}">Login</a></li>
+                    </ul>
+                    <div class="nav-toggle">☰</div>
+                  </nav>
+                  <script>
+                    document.addEventListener("DOMContentLoaded", function () {
+                      console.log("Script loaded successfully!");
+                    
+                      // Select popup element
+                      let popup = document.getElementById("popup");
+                    
+                      // Add event listener for login/signup click
+                      document.querySelector('a[onclick="openLoginPopup()"]').addEventListener("click", function (event) {
+                        event.preventDefault(); // Prevent default link action
+                        console.log("Login button clicked!");
+                        popup.classList.add("active");
+                      });
+                    
+                      // Close popup when close button is clicked
+                      document.querySelector(".close-btn").addEventListener("click", function () {
+                        console.log("Close button clicked!");
+                        popup.classList.remove("active");
+                      });
+                    });
+                    
+                </script>
 
-    <div class="banner">
-        <video src="{% static 'files/bgvid.mp4' %}" type="video/mp4" autoplay muted loop></video>
+
+                <div class="title">
+                    <h2>Travel with Us</h2>
+                    <p>Plan your trip with us and travel around the world with the most affordable packages!</p>
+                    <a href="{% url 'inquiry_form' %}" class="button">Register Now!</a>
+                </div>
+            </div>
+        </div>
     
-    <!-- Header -->
-
-    <div class="content" id="home"> 
-        <nav>
-            <img src="{% static 'files/logo.png' %}" class="logo" alt="Logo" title="FirstFlight Travels">
-            <h2>DD Tours And Travels</h2>
-            <ul class="navbar">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#locations">Locations</a></li>
-                <li><a href="{% url 'about'  %}">About Us</a></li>
-                <li><a href="{% url 'contact' %}">Contact Us</a></li>
-                <li><a href="{% url 'login' %}">Login</a></li>
-            </ul>
-{% comment %} {% include 'login.html' %} {% endcomment %}
+        <!-- Rest of your HTML remains the same -->
+    
+        <script>
+          
+                window.addEventListener("scroll", function () {
+                  let navbar = document.querySelector("nav");
+                  if (window.scrollY > 50) {
+                    navbar.classList.add("scrolled");
+                  } else {
+                    navbar.classList.remove("scrolled");
+                  }
+                });
+              
+                document.addEventListener("DOMContentLoaded", function () {
+                  const navToggle = document.querySelector(".nav-toggle");
+                  const navbar = document.querySelector(".navbar");
+              
+                  navToggle.addEventListener("click", function () {
+                    navbar.classList.toggle("active");
+                  });
+                });
+              
             
-        </nav>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-      console.log("Script loaded successfully!");
-    
-      // Select popup element
-      let popup = document.getElementById("popup");
-    
-      // Add event listener for login/signup click
-      document.querySelector('a[onclick="openLoginPopup()"]').addEventListener("click", function (event) {
-        event.preventDefault(); // Prevent default link action
-        console.log("Login button clicked!");
-        popup.classList.add("active");
-      });
-    
-      // Close popup when close button is clicked
-      document.querySelector(".close-btn").addEventListener("click", function () {
-        console.log("Close button clicked!");
-        popup.classList.remove("active");
-      });
-    });
-    
-</script>
- 
-        <div class="title">
-            <h2>Travel with Us</h2>
-            <p>Plan your trip with us and travel around the world with the most affordable packages!</p>
-            <a href="{% url 'inquiry_form' %}" class="button">Register Now!</a>
-        </div>
-        </div>
-    </div>
-
-
+              </script>
+    </section>
 <!-- Locations -->
 
 <section class="locations" id="locations">
@@ -275,6 +291,14 @@
 
 </section>
  {% endcomment %}
+ <!-- Membership Section -->
+<section class="membership" id="membership">
+    <div class="membership-content">
+        <h2>Join Our Membership</h2>
+        <p>Unlock exclusive benefits, discounts, and special offers by becoming a member today!</p>
+        <a href="membership.html" class="membership-button">Join Now</a>
+    </div>
+</section>
 <br>
 <br>
 <h1 style="text-align: center">Customer Reviews</h1>

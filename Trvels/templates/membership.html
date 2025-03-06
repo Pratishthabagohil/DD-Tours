@@ -17,14 +17,13 @@
       }
 
       body {
-        background-color: #f7f9fc;
+        background-color: #f7f9fc; /* Light gray-blue background */
         color: #333;
         line-height: 1.6;
         overflow-x: hidden;
       }
 
-      /* Custom Scroll Bar Styling */
-      /* For Webkit Browsers (Chrome, Edge, Safari) */
+      /* Updated Membership Page Styling */
       ::-webkit-scrollbar {
         width: 12px;
         height: 12px;
@@ -37,43 +36,24 @@
       }
 
       ::-webkit-scrollbar-thumb {
-        background: linear-gradient(45deg, #008eff, #0066cc);
+        background: linear-gradient(
+          45deg,
+          #0086ce,
+          #006699
+        ); /* Matches navbar */
         border-radius: 10px;
         border: 2px solid #f7f9fc;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        position: relative;
-      }
-
-      /* Adding a curved shape effect with pseudo-elements */
-      ::-webkit-scrollbar-thumb::before,
-      ::-webkit-scrollbar-thumb::after {
-        content: "";
-        position: absolute;
-        left: 50%;
-        width: 8px;
-        height: 8px;
-        background: #008eff;
-        border-radius: 50%;
-        transform: translateX(-50%);
-      }
-
-      ::-webkit-scrollbar-thumb::before {
-        top: -4px;
-      }
-
-      ::-webkit-scrollbar-thumb::after {
-        bottom: -4px;
       }
 
       ::-webkit-scrollbar-thumb:hover {
-        background: linear-gradient(45deg, #0066cc, #008eff);
+        background: linear-gradient(45deg, #006699, #0086ce);
         box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
       }
 
-      /* For Firefox */
       html {
         scrollbar-width: thin;
-        scrollbar-color: #008eff #e8ecef;
+        scrollbar-color: #0086ce #e8ecef;
       }
 
       .container {
@@ -82,17 +62,21 @@
         padding: 20px;
       }
 
-      /* Hero Section */
       .hero-section {
         position: relative;
         text-align: center;
         padding: 60px 20px;
-        background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+        background: linear-gradient(
+          135deg,
+          #0086ce 0%,
+          #004d7a 100%
+        ); /* Adjusted to navbar color */
         color: #fff;
         border-radius: 15px;
         margin-bottom: 40px;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         overflow: hidden;
+        margin-top: 65px; /* Offset for fixed navbar */
       }
 
       .hero-section::before {
@@ -125,7 +109,7 @@
 
       .cta-button {
         padding: 12px 30px;
-        background-color: #008eff;
+        background-color: #0086ce; /* Matches navbar */
         color: #fff;
         border: none;
         border-radius: 25px;
@@ -136,11 +120,10 @@
       }
 
       .cta-button:hover {
-        background-color: #0066cc;
+        background-color: #006699; /* Darker shade for hover */
         transform: translateY(-3px);
       }
 
-      /* Membership Intro */
       .membership-intro {
         text-align: center;
         margin-bottom: 60px;
@@ -149,7 +132,7 @@
 
       .membership-intro h2 {
         font-size: 2.5em;
-        color: #1e3c72;
+        color: #0086ce; /* Matches navbar */
         margin-bottom: 15px;
       }
 
@@ -160,11 +143,10 @@
       }
 
       .membership-intro .highlight {
-        color: #008eff;
+        color: #0086ce; /* Matches navbar */
         font-weight: 600;
       }
 
-      /* Savings Section */
       .savings-section,
       .family-membership-section {
         margin-bottom: 60px;
@@ -173,7 +155,7 @@
       .savings-section h2,
       .family-membership-section h2 {
         font-size: 2.2em;
-        color: #1e3c72;
+        color: #0086ce; /* Matches navbar */
         text-align: center;
         margin-bottom: 30px;
       }
@@ -194,8 +176,6 @@
         text-align: center;
         box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
         transition: transform 0.3s, box-shadow 0.3s;
-        position: relative;
-        overflow: hidden;
       }
 
       .savings-card:hover,
@@ -207,7 +187,7 @@
       .savings-card h3,
       .family-membership-card h3 {
         font-size: 1.5em;
-        color: #1e3c72;
+        color: #0086ce; /* Matches navbar */
         margin-bottom: 15px;
       }
 
@@ -231,22 +211,21 @@
 
       .savings-card .member-price,
       .family-membership-card .member-price {
-        color: #008eff;
+        color: #0086ce; /* Matches navbar */
         font-weight: bold;
       }
 
       .savings-card i,
       .family-membership-card i {
         font-size: 2.5em;
-        color: #008eff;
+        color: #0086ce; /* Matches navbar */
         margin-bottom: 15px;
       }
 
-      /* Footer */
       footer {
         text-align: center;
         padding: 30px 0;
-        background: #1e3c72;
+        background: #0086ce; /* Matches navbar */
         color: #fff;
         border-radius: 15px;
         margin-top: 40px;
@@ -256,7 +235,6 @@
         font-size: 0.95em;
       }
 
-      /* Animations */
       @keyframes fadeInUp {
         from {
           opacity: 0;
@@ -297,8 +275,9 @@
     </style>
   </head>
   <body>
+    {% load static %} {% include 'navbar.html' %}
+
     <div class="container">
-      <!-- Hero Section -->
       <section class="hero-section">
         <h1>Unlock Exclusive Travel Savings</h1>
         <p>
@@ -309,7 +288,6 @@
         </button>
       </section>
 
-      <!-- Single Membership Introduction -->
       <section class="membership-intro">
         <h2>Single Membership</h2>
         <p>
@@ -330,7 +308,6 @@
         </button>
       </section>
 
-      <!-- Family Membership Section -->
       <section class="family-membership-section">
         <h2>Family Membership Plans</h2>
         <p style="text-align: center; color: #666">
@@ -338,7 +315,6 @@
           affordable family plans!
         </p>
         <div class="family-membership-list">
-          <!-- Family Plan for 2 Persons -->
           <div class="family-membership-card">
             <i class="fas fa-users"></i>
             <h3>Family of 2</h3>
@@ -355,7 +331,6 @@
             </button>
           </div>
 
-          <!-- Family Plan for 3 Persons -->
           <div class="family-membership-card">
             <i class="fas fa-users"></i>
             <h3>Family of 3</h3>
@@ -372,7 +347,6 @@
             </button>
           </div>
 
-          <!-- Family Plan for 4 Persons -->
           <div class="family-membership-card">
             <i class="fas fa-users"></i>
             <h3>Family of 4</h3>
@@ -391,11 +365,9 @@
         </div>
       </section>
 
-      <!-- Savings Examples Section -->
       <section class="savings-section">
         <h2>How Much Can You Save?</h2>
         <div class="savings-list">
-          <!-- Example 1 -->
           <div class="savings-card">
             <i class="fas fa-wallet"></i>
             <h3>Small Booking (₹15,000)</h3>
@@ -407,7 +379,6 @@
             <p>Save ₹1,500 per booking!</p>
           </div>
 
-          <!-- Example 2 -->
           <div class="savings-card">
             <i class="fas fa-wallet"></i>
             <h3>Medium Booking (₹25,000)</h3>
@@ -419,7 +390,6 @@
             <p>Save ₹2,500 per booking!</p>
           </div>
 
-          <!-- Example 3 -->
           <div class="savings-card">
             <i class="fas fa-wallet"></i>
             <h3>Large Booking (₹35,000)</h3>
@@ -439,7 +409,6 @@
     </div>
 
     <script>
-      // Mock function for joining membership (static page)
       function joinMembership(plan) {
         alert(
           `Thank you for choosing the ${plan}! You'll be redirected to the payment page to join. (Mock action)`
